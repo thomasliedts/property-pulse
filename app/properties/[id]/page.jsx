@@ -1,3 +1,5 @@
+'use client';
+// Libs
 import React from 'react';
 
 const PropertyPage = () => {

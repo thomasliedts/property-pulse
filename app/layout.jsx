@@ -1,6 +1,9 @@
 // Libs
 import React from 'react';
 
+// Components
+import Navbar from '@/components/Navbar';
+
 // Utils
 import '@/assets/styles/globals.css';
 
@@ -14,7 +17,8 @@ const MainLayout = ({ children }) => {
   return (
     <html lang="fr">
       <body>
-        <div>{children}</div>
+        <Navbar />
+        <main>{children}</main>
       </body>
     </html>
   );
