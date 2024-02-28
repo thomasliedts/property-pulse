@@ -3,6 +3,7 @@ import React from 'react';
 
 // Components
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 // Utils
 import '@/assets/styles/globals.css';
@@ -19,6 +20,7 @@ const MainLayout = ({ children }) => {
       <body>
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
