@@ -72,7 +72,7 @@ const PropertyDetails = ({ property }) => {
             <span className="hidden sm:inline">Beds</span>
           </p>
           <p>
-            <FaBath className="inline-block mr-2" /> {property.bath}{' '}
+            <FaBath className="inline-block mr-2" /> {property.baths}{' '}
             <span className="hidden sm:inline">Baths</span>
           </p>
           <p>
