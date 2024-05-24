@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 // Utils
 import '@/assets/styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'photoswipe/dist/photoswipe.css';
 import { GlobalProvider } from '@/context/GlobalContext';
 
 export const metadata = {
