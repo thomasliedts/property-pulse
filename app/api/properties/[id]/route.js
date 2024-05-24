@@ -9,21 +9,21 @@ export const GET = async (request, { params }) => {
 
     const property = await Property.findById(params.id);
 
-    if (!property) return new Response('Property not found', { status: 404 });
+    if (!property) return new Response('Property Not Found', { status: 404 });
 
     return new Response(JSON.stringify(property), {
       status: 200,
     });
   } catch (error) {
-    console.log(error, 'this is the error');
-    return new Response('Something went wrong', { status: 500 });
+    console.log(error);
+    return new Response('Something Went Wrong', { status: 500 });
   }
 };
 
 // DELETE /api/properties/:id
 export const DELETE = async (request, { params }) => {
   try {
-    const PropertyId = params.id;
+    const propertyId = params.id;
 
     const sessionUser = await getSessionUser();
 
@@ -36,9 +36,9 @@ export const DELETE = async (request, { params }) => {
 
     await connectDB();
 
-    const property = await Property.findById(PropertyId);
+    const property = await Property.findById(propertyId);
 
-    if (!property) return new Response('Property not found', { status: 404 });
+    if (!property) return new Response('Property Not Found', { status: 404 });
 
     // Verify ownership
     if (property.owner.toString() !== userId) {
@@ -47,12 +47,12 @@ export const DELETE = async (request, { params }) => {
 
     await property.deleteOne();
 
-    return new Response('Property deleted', {
+    return new Response('Property Deleted', {
       status: 200,
     });
   } catch (error) {
-    console.log(error, 'this is the error');
-    return new Response('Something went wrong', { status: 500 });
+    console.log(error);
+    return new Response('Something Went Wrong', { status: 500 });
   }
 };
 
@@ -64,7 +64,7 @@ export const PUT = async (request, { params }) => {
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.userId) {
-      return new Response('UserId is required', { status: 401 });
+      return new Response('User ID is required', { status: 401 });
     }
 
     const { id } = params;
@@ -72,7 +72,7 @@ export const PUT = async (request, { params }) => {
 
     const formData = await request.formData();
 
-    // Access all values from amenities and images
+    // Access all values from amenities
     const amenities = formData.getAll('amenities');
 
     // Get property to update
@@ -115,14 +115,14 @@ export const PUT = async (request, { params }) => {
       owner: userId,
     };
 
-    //  Update property in database
+    // Update property in database
     const updatedProperty = await Property.findByIdAndUpdate(id, propertyData);
 
     return new Response(JSON.stringify(updatedProperty), {
       status: 200,
     });
   } catch (error) {
-    console.log(error, 'this is the error');
-    return new Response('Fail to add property', { status: 500 });
+    console.log(error);
+    return new Response('Failed to add property', { status: 500 });
   }
 };
